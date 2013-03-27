@@ -217,6 +217,7 @@ module CarrierWave
       ratio = get_ratio image, width, height, min_or_max
       return image if ratio == 1
       if ratio > 1
+        puts "Using :nearest for affinei_resize"
         image = image.affinei_resize :nearest, ratio
       else
         if ratio <= 0.5
@@ -225,6 +226,7 @@ module CarrierWave
           image = image.tile_cache(image.x_size, 1, 30)
           ratio = get_ratio image, width, height, min_or_max
         end
+        puts "Using :bicubic for affinei_resize"
         image = image.affinei_resize :bicubic, ratio
         image = image.conv SHARPEN_MASK
       end
