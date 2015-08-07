@@ -202,8 +202,6 @@ module CarrierWave
             VIPS::Image.new(current_path)
         end
         @_vimage = yield @_vimage
-    rescue => e
-        raise CarrierWave::ProcessingError.new("Failed to manipulate file, maybe it is not a supported image? Original Error: #{e}")
     end
 
     def process!(*)
